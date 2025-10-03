@@ -1,0 +1,1 @@
+web: gunicorn darentals_project.wsgi
