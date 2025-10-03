@@ -37,7 +37,7 @@ CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
