@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['https://darentals.up.railway.app', 'darentals.up.railway.app', 'https://darentals.onrender.com', 'darentals.onrender.com' ,".onrender.app", ".vercel.app", ".now.sh", "127.0.0.1", "localhost"]
 
-CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com', 'https://darentals.up.railway.app']
 
 
 # Application definition
