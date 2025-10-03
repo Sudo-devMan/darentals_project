@@ -145,7 +145,15 @@
       </div>
     </div>
 <div class="container py-5">
-  <form method="POST" enctype="multipart/form-data" class="shadow-lg bg-light p-4 mx-auto w-100" style="max-width: 800px;">
+  <script>
+    function loadSubmit(e){
+      e.preventDefault()
+      let subBtn = document.getElementById("submitBtn");
+      subBtn.disabled = true;
+      subBtn.textContent = "Loading...";
+    }
+  </script>
+  <form onsubmit="loadSubmit(e)" method="POST" enctype="multipart/form-data" class="shadow-lg bg-light p-4 mx-auto w-100" style="max-width: 800px;">
     {% csrf_token %}
     {% for msg in messages %}
       <p class="text-success text-center fw-semibold">{{ msg }}</p>
@@ -231,7 +239,7 @@
           <i class="fas fa-lock me-2"></i>Click here to add a bank account to receive rent payments
         </a>
       {% else %}
-        <button type="submit" class="btn btn-primary px-4 py-2">
+        <button id="submitBtn" type="submit" class="btn btn-primary px-4 py-2">
           <i class="fas fa-upload me-2"></i>Post Rental
         </button>
       {% endif %}

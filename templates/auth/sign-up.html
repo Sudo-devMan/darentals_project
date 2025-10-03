@@ -37,7 +37,7 @@
         {%for msg in messages %}
             <p class="text-danger">{{msg}}</p>
         {% endfor %}
-        <form method="post">
+        <form onsubmit="loadingSub(e)" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <label class="text-start" for="username">Username:</label>
@@ -55,8 +55,17 @@
                 <label class="text-start" for="password2">Comfirm Password:</label>
                 <input required type="password" name="password2" class="form-control" placeholder="comfirm password...">
             </div>
-            <input type="submit" value="Sign Up" class="btn btn-primary my-3 col-6">
+            <input id="submitBtn" type="submit" value="Sign Up" class="btn btn-primary my-3 col-6">
         </form>
+        <script>
+          function loadingSub(e) {
+            e.preventDefault()
+            let subButton = document.getElementById("submitBtn")
+            subButton.disabled = true;
+            subButton.value = "Loading..."
+            subButton.textContent = "Loading..."
+          }
+        </script>
         <a href="{% url 'login' %}">If you already have an account, Click here!</a>
     </div>
     </center>
