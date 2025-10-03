@@ -29,7 +29,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://darentals.onrender.com', 'darentals.onrender.com' ,".onrender.app", ".vercel.app", ".now.sh", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ['https://darentals.up.railway.app', 'darentals.up.railway.app', 'https://darentals.onrender.com', 'darentals.onrender.com' ,".onrender.app", ".vercel.app", ".now.sh", "127.0.0.1", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com']
 
@@ -37,6 +37,7 @@ CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
