@@ -29,9 +29,24 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://darentals.up.railway.app', 'darentals.up.railway.app', 'https://darentals.onrender.com', 'darentals.onrender.com' ,".onrender.app", ".vercel.app", ".now.sh", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = [
+    'https://darentals.up.railway.app',
+    'darentals.up.railway.app',
+    'https://darentals.onrender.com',
+    'darentals.onrender.com',
+    ".onrender.app",
+    ".vercel.app",
+    ".now.sh",
+    "127.0.0.1",
+    "localhost",
+    "darentals.vercel.app"
+    ]
 
-CSRF_TRUSTED_ORIGINS = ['https://darentals.onrender.com', 'https://darentals.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://darentals.onrender.com',
+    'https://darentals.up.railway.app',
+    'https://darentals.vercel.app'
+    ]
 
 
 # Application definition
@@ -49,6 +64,12 @@ INSTALLED_APPS = [
     'auth_app',
     'rentals',
     'payments',
+    # google oauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +81,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'base.base_middleware.FriendlyErrorMiddleware'
+    'base.base_middleware.FriendlyErrorMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'darentals_project.urls'
@@ -120,6 +142,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'allauth.account.auth_backends.AuthenticationBackend',  # required for django-allauth
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -154,6 +181,25 @@ SUPABASE_URL = config("SUPABASE_URL")
 SUPABASE_KEY = config("SUPABASE_KEY")  # server-side key
 SUPABASE_BUCKET = config("AWS_STORAGE_BUCKET_NAME")  # your bucket name
 
+
+SITE_ID = 1 # Or the ID of your site in the Django admin
+
+LOGIN_REDIRECT_URL = '/' # Or your desired redirect after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/' # Or your desired redirect after logout
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'APP': {
+            'client_id': config('GOOGLE_CLIENT_ID'), # Replace with your Client ID
+            'secret': config('GOOGLE_CLIENT_SECRET'), # Replace with your Client Secret
+            'key': ''
+        }
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
