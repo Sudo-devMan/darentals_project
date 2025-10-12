@@ -27,7 +27,7 @@ class Rental(models.Model):
         return f"{self.user.username} | {self.address}"
 
 class RentalImage(models.Model):
-    image = models.ImageField(storage=supabase_storage, upload_to='rentals', null=False, blank=False)
+    image = models.ImageField(upload_to='rentals', null=False, blank=False)
     rental = models.ForeignKey(Rental, on_delete=models.CASCADE, related_name="images", null=True)
 
     def __str__(self):

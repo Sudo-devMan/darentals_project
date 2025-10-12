@@ -49,6 +49,8 @@ CSRF_TRUSTED_ORIGINS = [
     ]
 
 
+DEFAULT_FILE_STORAGE = "base.storage_backends.SupabaseStorage"
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -14,7 +14,7 @@ supabase_storage = SupabaseStorage()
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self", related_name="followed_by", symmetrical=False, blank=True)
-    image = models.ImageField(storage=supabase_storage,upload_to='profiles', default='profiles/profile.png')
+    image = models.ImageField(upload_to='profiles', default='profiles/profile.png')
     address = models.TextField(default="South Africa")
     phone_number = models.CharField(max_length=50, default="No number")
     date_modified = models.DateTimeField(auto_now=True)
@@ -68,16 +68,16 @@ class Profile(models.Model):
     #     return None
 
     # def delete_paystack_subaccount(self):
-        url = f"https://api.paystack.co/subaccount/{self.subaccount_code}"
-        headers = {
-            "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}"
-        }
-        response = requests.delete(url, headers=headers)
-        if response.status == 200:
-            return True
-        else:
-            print("Failed to delete:", response.json())
-            return False
+        # url = f"https://api.paystack.co/subaccount/{self.subaccount_code}"
+        # headers = {
+        #     "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}"
+        # }
+        # response = requests.delete(url, headers=headers)
+        # if response.status == 200:
+        #     return True
+        # else:
+        #     print("Failed to delete:", response.json())
+        #     return False
 
 
 def create_profile(sender, instance, created, **kwargs):
